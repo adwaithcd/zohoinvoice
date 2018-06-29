@@ -1,0 +1,41 @@
+<!--
+Home page for the application
+-->
+
+{% extends 'base.html' %}
+<!--{% load static %}-->
+{% block title %}Home{% endblock %}
+{% block base %}<base href="{{base_href}}">{% endblock %}
+{% block content %}
+
+
+<script>
+  var djangoConstants ={
+    base_href: "{{base_href}}" ,
+    application_id:{{application_id}}
+  };
+</script>
+
+
+<div ng-app="zohoinvoice-app"><yellowant-zohoinvoice-app></yellowant-zohoinvoice-app>
+  <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular.js/1.6.4/angular.min.js"></script>
+
+  <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular.js/1.6.4/angular-animate.min.js"></script>
+
+  <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+
+  <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular-material/1.1.4/angular-material.min.js"></script>
+
+  <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular.js/1.6.4/angular-messages.min.js"></script>
+
+  <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular.js/1.6.4/angular-aria.min.js"></script>
+
+
+<!--<script src="{% static "dist/main.js" %}"></script>-->
+  <script src="http://localhost:3011/bundle/main.js"></script>
+  <!--<link rel="stylesheet" type="text/css" href="{% static "dist/main.css" %}">-->
+
+</div>
+
+
+{% endblock %}

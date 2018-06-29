@@ -1,0 +1,48 @@
+<div class="layout-container">
+  <section class="mb4" layout="column" layout-align="start center">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <img class="app-logo" src="https://www.pepperi.com/wp-content/uploads/2016/06/zohoinvoice.jpg" />
+    <md-button target="_blank" ng-if="$ctrl.userAccounts" ng-href="create-new-integration/" class="md-accent md-raised" layout="row">
+      <md-icon>add</md-icon> Add Account</md-button>
+  </section>
+
+  <section layout="column" layout-align="start center">
+    <md-list class="mw7 w-100" ng-if="$ctrl.userAccounts">
+      <md-list-item ng-repeat="account in $ctrl.userAccounts track by $index">
+        <md-card class="w-100 has-hidden-action-buttons">
+          <md-content class="pa3" layout="row" layout-align="space-between center" ng-if="account.app_authenticated">
+            <div class="mb0">
+              <h3 class="f3 mb2">{{ ::account.handle }}</h3>
+              <div><b>YellowAnt Invoke Name:</b> {{ ::account.user_invoke_name }}</div>
+                <div>Run <i>{{ ::account.user_invoke_name }} </i> to execute the integration.</div>
+              </div>
+            <a ng-if="account.app_authenticated" md-button class="md-primary md-raised hidden-action-buttons" ng-click="$ctrl.onDeleteAccount(account)">Delete</a>
+            <!--<a ng-if="account.app_authenticated" md-button class="md-primary md-raised hidden-action-buttons" ng-click="$ctrl.onDeleteAccount(account)" >Delete</a>-->
+          </md-content>
+
+        </md-card>
+      </md-list-item>
+    </md-list>
+
+
+
+    <div ng-if="!$ctrl.userAccounts" class="mw7 w-100">
+      <div class="mb3"><i>
+       Zoho Invoice is an online invoicing software that helps you craft invoices, automatically send payment reminders and get paid faster online.
+      </i></div>
+      <div layout="row" layout-align="center" class="mb4">
+        <img class="app-logo" src="https://www.pepperi.com/wp-content/uploads/2016/06/zohoinvoice.jpg" />
+      </div>
+      <div>
+        The Zoho <invoice></invoice> integration for YellowAnt allows you to manage your account in the following ways:
+        <ul>
+          <li>Create Invoices</li>
+          <!--<li>Add users,deals and activities</li>-->
+          <!--<li>Get information about users,pipelines,activities and deals</li>-->
+          <!--<li>Search for a particular user</li>-->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
