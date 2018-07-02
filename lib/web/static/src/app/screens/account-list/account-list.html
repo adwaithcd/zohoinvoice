@@ -11,11 +11,13 @@
       <md-list-item ng-repeat="account in $ctrl.userAccounts track by $index">
         <md-card class="w-100 has-hidden-action-buttons">
           <md-content class="pa3" layout="row" layout-align="space-between center" ng-if="account.app_authenticated">
+            <a class="mb0" ui-sref="accountSettings({ accountId: account.id })">
             <div class="mb0">
               <h3 class="f3 mb2">{{ ::account.handle }}</h3>
               <div><b>YellowAnt Invoke Name:</b> {{ ::account.user_invoke_name }}</div>
                 <div>Run <i>{{ ::account.user_invoke_name }} </i> to execute the integration.</div>
               </div>
+              </a>
             <a ng-if="account.app_authenticated" md-button class="md-primary md-raised hidden-action-buttons" ng-click="$ctrl.onDeleteAccount(account)">Delete</a>
             <!--<a ng-if="account.app_authenticated" md-button class="md-primary md-raised hidden-action-buttons" ng-click="$ctrl.onDeleteAccount(account)" >Delete</a>-->
           </md-content>
