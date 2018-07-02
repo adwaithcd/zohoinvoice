@@ -25,14 +25,14 @@ SECRET_KEY = '@0*%rxy-ni$@29885_-%@!+b!ovyw8nc1-u1*0b+gb&sy#(rp$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-BASE_URL = "http://37268bf7.ngrok.io"
+BASE_URL = "http://96ba0191.ngrok.io"
 ALLOWED_HOSTS = ["*"]
 BASE_HREF = "/"
 
 YELLOWANT_OAUTH_URL = "https://www.yellowant.com/api/oauth2/authorize/"
 YELLOWANT_APP_ID = "1913"
 YELLOWANT_CLIENT_ID = "jWLS868QSicCy6cCq3gyDbGQs1kS6ps1OtnUT8W2"
-YELLOWANT_CLIENT_SECRET ="CWAMtAggmN9uCshvq8J1brsBeLZsOsi3KkEkfesh2QHxygLP7XGQ7iBnXcuvRdXMYVfS3xhuW8hXiBKMGYpHCup8XYagRTISerNmFvHuN7RUH9mKKigEuWF2IlyqRo5c"
+YELLOWANT_CLIENT_SECRET = "CWAMtAggmN9uCshvq8J1brsBeLZsOsi3KkEkfesh2QHxygLP7XGQ7iBnXcuvRdXMYVfS3xhuW8hXiBKMGYpHCup8XYagRTISerNmFvHuN7RUH9mKKigEuWF2IlyqRo5c"
 YELLOWANT_VERIFICATION_TOKEN = "gLwR3J3vtb5IXbvgpP0igehNqdr40EHjU4X7MznLkJqzBlE78COsMtDjq2UryhOgV7Kkr9wQtpVRdeX20dspMwnOdMeQP4mrmZKMzXdDW6BS8PWFnORkBgO3cPcG8gJf"
 YELLOWANT_REDIRECT_URL = BASE_URL + "/redirecturl/"
 

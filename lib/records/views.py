@@ -19,7 +19,7 @@ from .commandcentre import CommandCentre
 from .models import YellowUserToken, YellowAntRedirectState, \
     AppRedirectState, ZohoInvoiceUserToken
 
-scopes = ['ZohoInvoice.contacts.Create',
+SCOPES = ['ZohoInvoice.contacts.Create',
           'ZohoInvoice.contacts.UPDATE',
           'ZohoInvoice.contacts.READ',
           'ZohoInvoice.contacts.DELETE',
@@ -51,11 +51,10 @@ scopes = ['ZohoInvoice.contacts.Create',
           'ZohoInvoice.expenses.UPDATE',
           'ZohoInvoice.expenses.READ',
           'ZohoInvoice.expenses.DELETE'
-          ]
+         ]
 
 
 def redirectToYellowAntAuthenticationPage(request):
-
     """Initiate the creation of a new user integration on YA
        YA uses oauth2 as its authorization framework.
        This method requests for an oauth2 code from YA to start creating a
@@ -78,7 +77,6 @@ def redirectToYellowAntAuthenticationPage(request):
 
 
 def yellowantRedirecturl(request):
-
     """ Receive the oauth2 code from YA to generate a new user integration
             This method calls utilizes the YA Python SDK to create a new user integration on YA.
             This method only provides the code for creating a new user integration on YA.
@@ -115,19 +113,19 @@ def yellowantRedirecturl(request):
     ut = YellowUserToken.objects.create(user=user, yellowant_token=access_token,
                                         yellowant_id=profile['id'],
                                         yellowant_integration_invoke_name=user_integration \
-                                        ["user_invoke_name"],
-                                        yellowant_integration_id=user_integration\
-                                        ['user_application'], webhook_id=hash_str)
+                                            ["user_invoke_name"],
+                                        yellowant_integration_id=user_integration \
+                                            ['user_application'], webhook_id=hash_str)
     state = str(uuid.uuid4())
     AppRedirectState.objects.create(user_integration=ut, state=state)
 
     web_url = settings.BASE_URL + "/webhook/" + hash_str + "/"
     print(web_url)
 
-    # print(settings.ZOHO_REDIRECT_URL)
+    # Redirecting the user to the zoho oauth url to get the state and the auth code
     url = settings.ZOHO_OAUTH_URL
     params = {
-        'scope': ','.join(str(i) for i in scopes),
+        'scope': ','.join(str(i) for i in SCOPES),
         'client_id': settings.ZOHO_CLIENT_ID,
         'state': state,
         'response_type': 'code',
@@ -143,6 +141,9 @@ def yellowantRedirecturl(request):
 
 
 def zohoRedirectUrl(request):
+    """
+     OAuth2 at zoho server
+    """
     print("In ZohoRedirecturl")
     state = request.GET.get("state")
     print(state)
@@ -184,11 +185,11 @@ def zohoRedirectUrl(request):
     access_token = response_json['access_token']
     refresh_token = response_json['refresh_token']
 
-    # test_url = ""
+    # adding access and refresh token to the database
 
-    ziut = ZohoInvoiceUserToken.objects.create(user_integration=ut,
-                                               zoho_access_token=access_token,
-                                               zoho_refresh_token=refresh_token)
+    ZohoInvoiceUserToken.objects.create(user_integration=ut,
+                                        zoho_access_token=access_token,
+                                        zoho_refresh_token=refresh_token)
 
     return HttpResponseRedirect("/")
 
@@ -209,7 +210,7 @@ def add_new_contact(request, id):
     yellow_obj = YellowUserToken.objects.get(webhook_id=id)
     access_token = yellow_obj.yellowant_token
     integration_id = yellow_obj.yellowant_integration_id
-    service_application = str(integration_id)
+    # service_application = str(integration_id)
 
     # Creating message object for webhook message
     webhook_message = MessageClass()
@@ -250,7 +251,7 @@ def add_new_contact(request, id):
     yellowant_user_integration_object = YellowAnt(access_token=access_token)
 
     # Sending webhook message to user
-    send_message = yellowant_user_integration_object.create_webhook_message(
+    yellowant_user_integration_object.create_webhook_message(
         requester_application=integration_id,
         webhook_name="new_contact", **webhook_message.get_dict())
     return HttpResponse("OK", status=200)
@@ -272,7 +273,7 @@ def add_new_item(request, id):
     yellow_obj = YellowUserToken.objects.get(webhook_id=id)
     access_token = yellow_obj.yellowant_token
     integration_id = yellow_obj.yellowant_integration_id
-    service_application = str(integration_id)
+    # service_application = str(integration_id)
 
     # Creating message object for webhook message
     webhook_message = MessageClass()
@@ -313,7 +314,7 @@ def add_new_item(request, id):
     yellowant_user_integration_object = YellowAnt(access_token=access_token)
 
     # Sending webhook message to user
-    send_message = yellowant_user_integration_object.create_webhook_message(
+    yellowant_user_integration_object.create_webhook_message(
         requester_application=integration_id,
         webhook_name="new_item", **webhook_message.get_dict())
     return HttpResponse("OK", status=200)
@@ -324,7 +325,6 @@ def add_new_invoice(request, id):
     """
             Webhook function to notify user about newly created invoice
     """
-
     print(request.body)
     invoice_id = request.POST['ID']
     contact_email = request.POST['Email']
@@ -334,11 +334,11 @@ def add_new_invoice(request, id):
     yellow_obj = YellowUserToken.objects.get(webhook_id=id)
     access_token = yellow_obj.yellowant_token
     integration_id = yellow_obj.yellowant_integration_id
-    service_application = str(integration_id)
+    # service_application = str(integration_id)
 
     # Creating message object for webhook message
     webhook_message = MessageClass()
-    webhook_message.message_text = "New invoice added."
+    webhook_message.message_text = "New invoice added"
 
     attachment = MessageAttachmentsClass()
 
@@ -369,7 +369,7 @@ def add_new_invoice(request, id):
     yellowant_user_integration_object = YellowAnt(access_token=access_token)
 
     # Sending webhook message to user
-    send_message = yellowant_user_integration_object.create_webhook_message(
+    yellowant_user_integration_object.create_webhook_message(
         requester_application=integration_id,
         webhook_name="new_invoice", **webhook_message.get_dict())
     return HttpResponse("OK", status=200)

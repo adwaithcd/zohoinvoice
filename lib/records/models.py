@@ -45,4 +45,3 @@ class ZohoInvoiceUserToken(models.Model):
     zoho_access_token = models.TextField(max_length=200)
     zoho_refresh_token = models.TextField(max_length=200)
     token_update = models.DateTimeField(default=datetime.datetime.utcnow)
-

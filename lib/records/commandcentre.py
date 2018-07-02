@@ -6,7 +6,6 @@
 """
 import datetime
 import json
-import re
 import urllib
 
 import pytz
@@ -18,6 +17,9 @@ from .models import ZohoInvoiceUserToken, YellowUserToken
 
 
 def get_token_from_refresh_token(refresh_token):
+    """
+     This function updates the access token using the refresh token once every 57 minutes
+    """
     # Build the post form for the token request
     # print("In get_token_from_refresh_token")
 
@@ -100,6 +102,9 @@ class CommandCentre(object):
         return self.commands[self.function_name](self.args)
 
     def list_users(self, args):
+        """
+            This function returns all the users in the organization
+        """
         org_id = args['organization']
         headers = {
             "Content-Type": "application/json",
@@ -145,6 +150,10 @@ class CommandCentre(object):
         return message.to_json()
 
     def get_organization(self, args):
+        """
+            This function gets the ID and the name of the organization. This is a picklist function
+            used by all other functions
+        """
         headers = {
             "Content-Type": "application/json",
             "Authorization": "Zoho-oauthtoken" + " " + self.zohoinvoice_access_token
@@ -168,6 +177,10 @@ class CommandCentre(object):
         return message.to_json()
 
     def create_contact(self, args):
+        """
+            This function is used to create a contact given the contact name,company name, email
+            and the mobile number
+        """
         org_id = args['organization']
         contact_name = args['contact_name']
         company_name = args['company_name']
@@ -231,6 +244,9 @@ class CommandCentre(object):
             return message.to_json()
 
     def list_items(self, args):
+        """
+            This function returns all the items of an organization
+        """
         org_id = args['organization']
         headers = {
             "Authorization": "Zoho-oauthtoken" + " " + self.zohoinvoice_access_token,
@@ -288,9 +304,9 @@ class CommandCentre(object):
 
     def type_picklist(self, args):
         """
-                    This is a picklist function which gives two options.
-                    Goods or Service
-                """
+            This is a picklist function which gives two options.
+            Goods or Service
+        """
         message = MessageClass()
         message.message_text = "Product Type"
         data = {'list': []}
@@ -301,6 +317,9 @@ class CommandCentre(object):
         return message.to_json()
 
     def create_item(self, args):
+        """
+            This function is used to create an item. The item name needs to be unique
+        """
         org_id = args['organization']
         name = args['name']
         rate = args['Rate']
@@ -315,11 +334,11 @@ class CommandCentre(object):
         }
         url = settings.ZOHO_ITEMS_URL
         payload = {
-                    "name": name,
-                    "rate": rate,
-                    "description": description,
-                    "product_type": product_type
-                }
+            "name": name,
+            "rate": rate,
+            "description": description,
+            "product_type": product_type
+        }
 
         response = requests.post(url, headers=headers, data={"JSONString": json.dumps(payload)})
         response_json = response.json()
@@ -366,6 +385,9 @@ class CommandCentre(object):
             return message.to_json()
 
     def add_user(self, args):
+        """
+            This function is used to add an user to the organization
+        """
         org_id = args['organization']
         name = args['name']
         email = args['email']
@@ -378,10 +400,10 @@ class CommandCentre(object):
         }
         url = settings.ZOHO_USER_URL
         payload = {
-                    "name": name,
-                    "email": email,
-                    "user_role": role
-                }
+            "name": name,
+            "email": email,
+            "user_role": role
+        }
 
         response = requests.post(url, headers=headers, data={"JSONString": json.dumps(payload)})
         response_json = response.json()
@@ -407,6 +429,9 @@ class CommandCentre(object):
             return message.to_json()
 
     def user_role_picklist(self, args):
+        """
+            This is a picklist function which gives the user roles. This supports add_user function
+        """
         message = MessageClass()
         message.message_text = "User Role"
         data = {'list': []}
@@ -478,6 +503,10 @@ class CommandCentre(object):
     #         return message.to_json()
 
     def get_organization_customer_id(self, args):
+        """
+            This function is used to get the customer IDs of all the customers across all the
+            organizations. This is a supporting function for create_invoice function
+        """
         org_headers = {
             "Content-Type": "application/json",
             "Authorization": "Zoho-oauthtoken" + " " + self.zohoinvoice_access_token
@@ -506,13 +535,17 @@ class CommandCentre(object):
             message.message_text = "Customer list:"
             data = response_json['contacts']
             name_list = {'data': []}
-            for a in data:
-                name_list['data'].append({"id": str(a['contact_id']), "name": str(a['contact_name'])})
+            for customer in data:
+                name_list['data'].append({"id": str(customer['contact_id']), "name": str(customer['contact_name'])})
             message.data = name_list
             print(message.data)
             return message.to_json()
 
-    def picklist_item(self,args):
+    def picklist_item(self, args):
+        """
+            This function is used to get the item IDs of all the items across all the
+            organizations. This is a supporting function for create_invoice function
+        """
         org_headers = {
             "Content-Type": "application/json",
             "Authorization": "Zoho-oauthtoken" + " " + self.zohoinvoice_access_token
@@ -548,6 +581,10 @@ class CommandCentre(object):
             return message.to_json()
 
     def create_invoice(self, args):
+        """
+            This function is used to create an invoice given the org ID, customer ID,date, Item ID
+            and the quantity
+        """
         org_id = args['organization']
         customer_id = args['customer_id']
         date = args['date']
@@ -567,14 +604,14 @@ class CommandCentre(object):
         }
         url = settings.ZOHO_INVOICE_URL
         payload = {
-                    "customer_id": customer_id,
-                    "date": date,
-                    "line_items": [
-                        {
-                            "item_id": item_id,
-                            "quantity": quantity,
-                        }
-                    ],
+            "customer_id": customer_id,
+            "date": date,
+            "line_items": [
+                {
+                    "item_id": item_id,
+                    "quantity": quantity,
+                }
+            ],
         }
 
         response = requests.post(url, headers=headers, data={"JSONString": json.dumps(payload)})
@@ -599,11 +636,3 @@ class CommandCentre(object):
             attachment.text = "Invoice created"
             message.attach(attachment)
             return message.to_json()
-
-
-
-
-
-
-
-

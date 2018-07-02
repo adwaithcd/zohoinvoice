@@ -49,7 +49,7 @@ def userdetails(request):
                 user_integrations_list.append({"user_invoke_name": user_integration.\
                                               yellowant_integration_invoke_name,
                                                "id": user_integration.id, "app_authenticated": True,
-                                               })
+                                              })
             except ZohoInvoiceUserToken.DoesNotExist:
                 user_integrations_list.append({"user_invoke_name": user_integration.\
                                               yellowant_integration_invoke_name,
@@ -93,4 +93,3 @@ def user_detail_update_delete_view(request, id=None):
             return HttpResponse("successResponse", status=204)
         else:
             return HttpResponse("Not Authenticated", status=403)
-
