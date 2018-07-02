@@ -40,7 +40,7 @@ DEV_ENV = os.environ.get('ENV', 'DEV')
 if DEV_ENV == "DEV":
     ZOHO_CLIENT_ID = "1000.IYQNQDQXMBZX95094O1RZLUCNUWNUO"
     ZOHO_CLIENT_SECRET = "cd171a5ad424f39d9bfde1273d1aea382f69cfa561"
-    BASE_URL = "http://96ba0191.ngrok.io"
+    BASE_URL = "https://96ba0191.ngrok.io"
     SITE_DOMAIN_URL = "ngrok.io"
 elif DEV_ENV == "HEROKU":
     BASE_URL = "https://{}.herokuapp.com/".format(app_name)
