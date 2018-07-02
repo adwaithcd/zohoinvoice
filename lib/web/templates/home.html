@@ -3,7 +3,7 @@ Home page for the application
 -->
 
 {% extends 'base.html' %}
-<!--{% load static %}-->
+{% load static %}
 {% block title %}Home{% endblock %}
 {% block base %}<base href="{{base_href}}">{% endblock %}
 {% block content %}
@@ -31,9 +31,9 @@ Home page for the application
   <script src="https://s3.amazonaws.com/ya-stage-common/angular-static/angular.js/1.6.4/angular-aria.min.js"></script>
 
 
-<!--<script src="{% static "dist/main.js" %}"></script>-->
-  <script src="http://localhost:3011/bundle/main.js"></script>
-  <!--<link rel="stylesheet" type="text/css" href="{% static "dist/main.css" %}">-->
+<script src="{% static "dist/main.js" %}"></script>
+  <!--<script src="http://localhost:3011/bundle/main.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="{% static "dist/main.css" %}">
 
 </div>
 

@@ -1,0 +1,353 @@
+api_url: http://96ba0191.ngrok.io/yellowant-api/
+creator_email: adwaithgowda@gmail.com
+documentation_url: https://www.yellowant.com/docs
+functions:
+  add_user:
+    function_type: 1
+    input_args:
+      email:
+        arg_type: 14
+        description: Email address of the user
+        example: test@test.com
+        name: email
+        required: 1
+      name:
+        arg_type: 14
+        description: Name of the user
+        example: John Doe
+        name: name
+        required: 1
+      organization:
+        arg_type: 14
+        description: The ID of the organization
+        example: '10234695'
+        name: organization
+        required: 1
+      user_role:
+        arg_type: 14
+        description: The role of the user
+        example: Admin
+        name: user_role
+        required: 1
+    invoke_name: add_user
+    is_active: 1
+    max_retries: 0
+    name: Add user
+    output_keys: {}
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Adds an user to the organization
+    user_rate_limit: 0.0
+  create_contact:
+    function_type: 1
+    input_args:
+      company_name:
+        arg_type: 14
+        description: Name of the contact's company
+        example: Test company
+        name: company_name
+        required: 1
+      contact_name:
+        arg_type: 14
+        description: Name of the contact. This can be the name of an organization
+          or the name of an individual.
+        example: John Doe
+        name: contact_name
+        required: 1
+      email:
+        arg_type: 14
+        description: The Email ID of the contact person.
+        example: johndoe@test.com
+        name: email
+        required: 1
+      mobile:
+        arg_type: 14
+        description: Mobile number of the contact person.
+        example: '+919876543210'
+        name: mobile
+        required: 1
+      organization:
+        arg_type: 14
+        description: The ID of the organization.
+        example: '10234695'
+        name: organization
+        required: 1
+    invoke_name: create_contact
+    is_active: 1
+    max_retries: 0
+    name: Create a contact
+    output_keys: {}
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Create a contact with given information.
+    user_rate_limit: 0.0
+  create_invoice:
+    function_type: 1
+    input_args:
+      customer_id:
+        arg_type: 14
+        description: ID of the customer the invoice has to be created.
+        example: '982000000567001'
+        name: customer_id
+        required: 1
+      date:
+        arg_type: 14
+        description: invoice date. Date format yyyy-mm-dd
+        example: '2018-06-27'
+        name: date
+        required: 1
+      item_id:
+        arg_type: 14
+        description: The ID of the item
+        example: '982000000030049'
+        name: item_id
+        required: 1
+      organization:
+        arg_type: 14
+        description: The ID of the organization
+        example: '10234695'
+        name: organization
+        required: 1
+      quantity:
+        arg_type: 14
+        description: The quantity of line item
+        example: '2'
+        name: quantity
+        required: 1
+    invoke_name: create_invoice
+    is_active: 1
+    max_retries: 0
+    name: Create Invoice
+    output_keys: {}
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Create an invoice for your customer.
+    user_rate_limit: 0.0
+  create_item:
+    function_type: 1
+    input_args:
+      Rate:
+        arg_type: 14
+        description: Per unit price of an item.
+        example: '100'
+        name: Rate
+        required: 1
+      description:
+        arg_type: 14
+        description: Description for the item.
+        example: This is a test description
+        name: description
+        required: 1
+      name:
+        arg_type: 14
+        description: Name of the item
+        example: Test name
+        name: name
+        required: 1
+      organization:
+        arg_type: 14
+        description: The ID of the organization.
+        example: '10234695'
+        name: organization
+        required: 1
+      product_type:
+        arg_type: 14
+        description: Specify the type of an item. It can be either goods or service
+        example: goods
+        name: product_type
+        required: 1
+    invoke_name: create_item
+    is_active: 1
+    max_retries: 0
+    name: Create Item
+    output_keys: {}
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Create an Item
+    user_rate_limit: 0.0
+  get_organization:
+    function_type: 1
+    input_args: {}
+    invoke_name: get_organization
+    is_active: 0
+    max_retries: 0
+    name: Get Organizations
+    output_keys:
+      _keys:
+        org: '[org]:  List of Orgs'
+      org:
+        id: '__unicode:  Org ID'
+        name: '__unicode:  Org name'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Gets all the organizations the user is part of.
+    user_rate_limit: 0.0
+  get_organization_customer_id:
+    function_type: 1
+    input_args: {}
+    invoke_name: get_organization_customer_id
+    is_active: 0
+    max_retries: 0
+    name: Get customer ID
+    output_keys:
+      _keys:
+        data: '[data]:  List of Data'
+      data:
+        id: '__unicode:  Data code'
+        name: '__unicode:  Data name'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Picklist to get customer ID
+    user_rate_limit: 0.0
+  list_items:
+    function_type: 1
+    input_args:
+      organization:
+        arg_type: 14
+        description: The ID of the organization
+        example: '10234695'
+        name: organization
+        required: 1
+    invoke_name: list_items
+    is_active: 1
+    max_retries: 0
+    name: List Items
+    output_keys: {}
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Get the list of all active items.
+    user_rate_limit: 0.0
+  list_users:
+    function_type: 1
+    input_args:
+      organization:
+        arg_type: 14
+        description: The ID of the organization
+        example: '10234695'
+        name: organization
+        required: 1
+    invoke_name: list_users
+    is_active: 1
+    max_retries: 0
+    name: List Users
+    output_keys: {}
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Get the list of all users in the organization.
+    user_rate_limit: 0.0
+  new_contact:
+    function_type: 2
+    input_args: {}
+    invoke_name: new_contact
+    is_active: 1
+    max_retries: 0
+    name: New Contact Notification
+    output_keys:
+      _keys:
+        Company Name: '__unicode:  Company Name'
+        Email: '__unicode:   Email'
+        ID: '__unicode:   ID'
+        Name: '__unicode:   Name'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: New Contact Notification
+    user_rate_limit: 0.0
+  new_invoice:
+    function_type: 2
+    input_args: {}
+    invoke_name: new_invoice
+    is_active: 1
+    max_retries: 0
+    name: New Invoice Notification
+    output_keys:
+      _keys:
+        Contact Email: '__unicode:  Contact Email'
+        Invoice ID: '__unicode:  Invoice ID'
+        Total: '__unicode:  Total'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: New Invoice Notification
+    user_rate_limit: 0.0
+  new_item:
+    function_type: 2
+    input_args: {}
+    invoke_name: new_item
+    is_active: 1
+    max_retries: 0
+    name: New Item Notification
+    output_keys:
+      _keys:
+        Description: '__unicode:  Description'
+        ID: '__unicode:  ID'
+        Name: '__unicode:  Name'
+        Price: '__unicode:  Price'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: New Item Notification
+    user_rate_limit: 0.0
+  picklist_item:
+    function_type: 1
+    input_args: {}
+    invoke_name: picklist_item
+    is_active: 0
+    max_retries: 0
+    name: Item Picklist
+    output_keys:
+      _keys:
+        data: '[data]:   List of Data'
+      data:
+        id: '__unicode:   Data code'
+        name: '__unicode:   Data name'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: The picklist for all the items
+    user_rate_limit: 0.0
+  type_picklist:
+    function_type: 1
+    input_args: {}
+    invoke_name: type_picklist
+    is_active: 0
+    max_retries: 0
+    name: Picklist for item type
+    output_keys:
+      _keys:
+        list: '[list]:  List of List'
+      list:
+        type: '__unicode:  List'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Picklist for item type
+    user_rate_limit: 0.0
+  user_role_picklist:
+    function_type: 1
+    input_args: {}
+    invoke_name: user_role_picklist
+    is_active: 0
+    max_retries: 0
+    name: Picklist for User Role
+    output_keys:
+      _keys:
+        list: '[list]:  List of List'
+      list:
+        role: '__unicode:  List'
+    privacy_mode: 0
+    rate_limited: 0
+    short_description: Picklist for User Role
+    user_rate_limit: 0.0
+icon_url: https://www.pepperi.com/wp-content/uploads/2016/06/zohoinvoice.jpg
+install_page_url: https://www.yellowant.com
+invoke_name: zoho_invoice
+is_active: 1
+is_production_or_sandbox: 0
+long_description: Zoho Invoice is an online invoicing software that helps you craft
+  invoices, automatically send payment reminders and get paid faster online.
+name: Zoho Invoice
+privacy_policy_url: https://www.yellowant.com/privacy
+rate_limit: 0.0
+rate_limited: 0
+redirect_uris: http://96ba0191.ngrok.io/redirecturl/
+short_description: Zoho Invoice is an online invoicing software that helps you craft
+  invoices, automatically send payment reminders and get paid faster online.
+user_rate_limit: 0.0
+visibility_scope: 0
+website: https://www.yellowant.com

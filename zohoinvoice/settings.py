@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
+
+data = open('yellowant_app_credentials.json').read()
+data_json = json.loads(data)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,20 +29,32 @@ SECRET_KEY = '@0*%rxy-ni$@29885_-%@!+b!ovyw8nc1-u1*0b+gb&sy#(rp$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-BASE_URL = "http://96ba0191.ngrok.io"
-ALLOWED_HOSTS = ["*"]
+app_name = os.environ.get("HEROKU_APP_NAME")
+BASE_URL = "https://{}.herokuapp.com".format(app_name)
+ALLOWED_HOSTS = ['*', '{}.herokuapp.com'.format(app_name)]
+
 BASE_HREF = "/"
+SITE_PROTOCOL = "http://"
+
+DEV_ENV = os.environ.get('ENV', 'DEV')
+if DEV_ENV == "DEV":
+    ZOHO_CLIENT_ID = "1000.IYQNQDQXMBZX95094O1RZLUCNUWNUO"
+    ZOHO_CLIENT_SECRET = "cd171a5ad424f39d9bfde1273d1aea382f69cfa561"
+    BASE_URL = "http://96ba0191.ngrok.io"
+    SITE_DOMAIN_URL = "ngrok.io"
+elif DEV_ENV == "HEROKU":
+    BASE_URL = "https://{}.herokuapp.com/".format(app_name)
+    ZOHO_CLIENT_ID = os.environ.get('ZOHO_CLIENT_ID')
+    ZOHO_CLIENT_SECRET = os.environ.get('ZOHO_CLIENT_SECRET')
+    app_name = os.environ.get("HEROKU_APP_NAME")
+    SITE_DOMAIN_URL = "herokuapp.com"
 
 YELLOWANT_OAUTH_URL = "https://www.yellowant.com/api/oauth2/authorize/"
-YELLOWANT_APP_ID = "1913"
-YELLOWANT_CLIENT_ID = "jWLS868QSicCy6cCq3gyDbGQs1kS6ps1OtnUT8W2"
-YELLOWANT_CLIENT_SECRET = "CWAMtAggmN9uCshvq8J1brsBeLZsOsi3KkEkfesh2QHxygLP7XGQ7iBnXcuvRdXMYVfS3xhuW8hXiBKMGYpHCup8XYagRTISerNmFvHuN7RUH9mKKigEuWF2IlyqRo5c"
-YELLOWANT_VERIFICATION_TOKEN = "gLwR3J3vtb5IXbvgpP0igehNqdr40EHjU4X7MznLkJqzBlE78COsMtDjq2UryhOgV7Kkr9wQtpVRdeX20dspMwnOdMeQP4mrmZKMzXdDW6BS8PWFnORkBgO3cPcG8gJf"
-YELLOWANT_REDIRECT_URL = BASE_URL + "/redirecturl/"
-
-
-ZOHO_CLIENT_ID = "1000.IYQNQDQXMBZX95094O1RZLUCNUWNUO"
-ZOHO_CLIENT_SECRET = "cd171a5ad424f39d9bfde1273d1aea382f69cfa561"
+YELLOWANT_APP_ID = str(data_json['application_id'])
+YELLOWANT_CLIENT_ID = str(data_json['client_id'])
+YELLOWANT_CLIENT_SECRET = str(data_json['client_secret'])
+YELLOWANT_VERIFICATION_TOKEN = str(data_json['verification_token'])
+YELLOWANT_REDIRECT_URL = BASE_URL + "redirecturl/"
 
 ZOHO_OAUTH_URL = "https://accounts.zoho.com/oauth/v2/auth?"
 ZOHO_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token?"
@@ -66,6 +82,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,6 +126,11 @@ DATABASES = {
     }
 }
 
+if DEV_ENV == "HEROKU":
+    import dj_database_url
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
+    DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -147,3 +169,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
