@@ -1,4 +1,4 @@
-api_url: http://496dac72.ngrok.io/yellowant-api/
+api_url: http://66f1b561.ngrok.io/yellowant-api/
 creator_email: adwaithgowda@gmail.com
 documentation_url: https://www.yellowant.com/docs
 functions:
@@ -345,7 +345,7 @@ name: Zoho Invoice
 privacy_policy_url: https://www.yellowant.com/privacy
 rate_limit: 0.0
 rate_limited: 0
-redirect_uris: http://496dac72.ngrok.io/redirecturl/
+redirect_uris: http://66f1b561.ngrok.io/redirecturl/
 short_description: Zoho Invoice is an online invoicing software that helps you craft
   invoices, automatically send payment reminders and get paid faster online.
 user_rate_limit: 0.0
