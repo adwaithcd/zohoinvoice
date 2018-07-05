@@ -40,7 +40,7 @@ DEV_ENV = os.environ.get('ENV', 'DEV')
 if DEV_ENV == "DEV":
     ZOHO_CLIENT_ID = "1000.IYQNQDQXMBZX95094O1RZLUCNUWNUO"
     ZOHO_CLIENT_SECRET = "cd171a5ad424f39d9bfde1273d1aea382f69cfa561"
-    BASE_URL = "https://66f1b561.ngrok.io"
+    BASE_URL = "https://851063d6.ngrok.io"
     SITE_DOMAIN_URL = "ngrok.io"
 elif DEV_ENV == "HEROKU":
     BASE_URL = "https://{}.herokuapp.com/".format(app_name)
@@ -59,7 +59,7 @@ YELLOWANT_REDIRECT_URL = BASE_URL + "redirecturl/"
 ZOHO_OAUTH_URL = "https://accounts.zoho.com/oauth/v2/auth?"
 ZOHO_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token?"
 ZOHO_REFRESH_TOKEN_URL = "https://accounts.zoho.com/oauth/v2/token/revoke?"
-ZOHO_REDIRECT_URL = BASE_URL + "/zoho-redirecturl/"
+ZOHO_REDIRECT_URL = BASE_URL + "zoho-redirecturl/"
 
 ZOHO_ORGANIZATION_URL = "https://invoice.zoho.com/api/v3/organizations"
 ZOHO_USER_URL = "https://invoice.zoho.com/api/v3/users"

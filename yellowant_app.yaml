@@ -1,4 +1,4 @@
-api_url: http://66f1b561.ngrok.io/yellowant-api/
+api_url: https://zohoinvoiceapp.herokuapp.com/yellowant-api/
 creator_email: adwaithgowda@gmail.com
 documentation_url: https://www.yellowant.com/docs
 functions:
@@ -174,10 +174,10 @@ functions:
     name: Get Organizations
     output_keys:
       _keys:
-        org: '[org]:  List of Orgs'
+        org: '[org]: List of Orgs'
       org:
-        id: '__unicode:  Org ID'
-        name: '__unicode:  Org name'
+        id: '__unicode: Org ID'
+        name: '__unicode: Org name'
     privacy_mode: 0
     rate_limited: 0
     short_description: Gets all the organizations the user is part of.
@@ -191,10 +191,10 @@ functions:
     name: Get customer ID
     output_keys:
       _keys:
-        data: '[data]:  List of Data'
+        data: '[data]: List of Data'
       data:
-        id: '__unicode:  Data code'
-        name: '__unicode:  Data name'
+        id: '__unicode: Data code'
+        name: '__unicode: Data name'
     privacy_mode: 0
     rate_limited: 0
     short_description: Picklist to get customer ID
@@ -244,10 +244,10 @@ functions:
     name: New Contact Notification
     output_keys:
       _keys:
-        Company Name: '__unicode:  Company Name'
-        Email: '__unicode:   Email'
-        ID: '__unicode:   ID'
-        Name: '__unicode:   Name'
+        Company Name: '__unicode: Company Name'
+        Email: '__unicode: Email'
+        ID: '__unicode: ID'
+        Name: '__unicode: Name'
     privacy_mode: 0
     rate_limited: 0
     short_description: New Contact Notification
@@ -261,9 +261,9 @@ functions:
     name: New Invoice Notification
     output_keys:
       _keys:
-        Contact Email: '__unicode:  Contact Email'
-        Invoice ID: '__unicode:  Invoice ID'
-        Total: '__unicode:  Total'
+        Contact Email: '__unicode: Contact Email'
+        Invoice ID: '__unicode: Invoice ID'
+        Total: '__unicode: Total'
     privacy_mode: 0
     rate_limited: 0
     short_description: New Invoice Notification
@@ -277,10 +277,10 @@ functions:
     name: New Item Notification
     output_keys:
       _keys:
-        Description: '__unicode:  Description'
-        ID: '__unicode:  ID'
-        Name: '__unicode:  Name'
-        Price: '__unicode:  Price'
+        Description: '__unicode: Description'
+        ID: '__unicode: ID'
+        Name: '__unicode: Name'
+        Price: '__unicode: Price'
     privacy_mode: 0
     rate_limited: 0
     short_description: New Item Notification
@@ -294,10 +294,10 @@ functions:
     name: Item Picklist
     output_keys:
       _keys:
-        data: '[data]:   List of Data'
+        data: '[data]: List of Data'
       data:
-        id: '__unicode:   Data code'
-        name: '__unicode:   Data name'
+        id: '__unicode: Data code'
+        name: '__unicode: Data name'
     privacy_mode: 0
     rate_limited: 0
     short_description: The picklist for all the items
@@ -311,9 +311,9 @@ functions:
     name: Picklist for item type
     output_keys:
       _keys:
-        list: '[list]:  List of List'
+        list: '[list]: List of List'
       list:
-        type: '__unicode:  List'
+        type: '__unicode: List'
     privacy_mode: 0
     rate_limited: 0
     short_description: Picklist for item type
@@ -327,27 +327,27 @@ functions:
     name: Picklist for User Role
     output_keys:
       _keys:
-        list: '[list]:  List of List'
+        list: '[list]: List of List'
       list:
-        role: '__unicode:  List'
+        role: '__unicode: List'
     privacy_mode: 0
     rate_limited: 0
     short_description: Picklist for User Role
     user_rate_limit: 0.0
 icon_url: https://www.pepperi.com/wp-content/uploads/2016/06/zohoinvoice.jpg
-install_page_url: https://www.yellowant.com
+install_page_url: https://zohoinvoiceapp.herokuapp.com/
 invoke_name: zoho_invoice
 is_active: 1
 is_production_or_sandbox: 1
 long_description: Zoho Invoice is an online invoicing software that helps you craft
   invoices, automatically send payment reminders and get paid faster online.
 name: Zoho Invoice
-privacy_policy_url: https://www.yellowant.com/privacy
+privacy_policy_url: https://zohoinvoiceapp.herokuapp.com/privacy
 rate_limit: 0.0
 rate_limited: 0
-redirect_uris: http://66f1b561.ngrok.io/redirecturl/
+redirect_uris: https://zohoinvoiceapp.herokuapp.com/redirecturl/
 short_description: Zoho Invoice is an online invoicing software that helps you craft
   invoices, automatically send payment reminders and get paid faster online.
 user_rate_limit: 0.0
 visibility_scope: 0
-website: https://www.yellowant.com
+website: https://zohoinvoiceapp.herokuapp.com/
