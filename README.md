@@ -8,7 +8,7 @@ Go to YellowAnt developers page and click on Generate Developer Token to get "YA
 
 "HEROKU_APP_NAME" should be same as "App name"
 
-![Screenshot](appname.png)
+![Screenshot](zohoinvoice.png)
 
 "ZOHO_CLIENT_ID", "ZOHO_CLIENT_SECRET" is to be obtained from Zoho developers account
 
