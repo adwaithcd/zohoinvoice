@@ -78,7 +78,6 @@ class CommandCentre(object):
             'type_picklist': self.type_picklist,
             'add_user': self.add_user,
             'user_role_picklist': self.user_role_picklist,
-            # 'create_contact_person': self.create_contact_person,
             'get_organization_customer_id': self.get_organization_customer_id,
             'create_invoice': self.create_invoice,
             'picklist_item': self.picklist_item,
