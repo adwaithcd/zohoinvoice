@@ -379,7 +379,7 @@ def add_new_invoice(request, id):
 @require_POST
 def webhook(request, id=None):
     """
-        This function handles the incoming webhooks.
+        This is the main function for webhooks.
     """
     print(request.body)
 
