@@ -43,7 +43,7 @@
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
-    "webpack": "^2.4.1",
+    "webpack": "^5.74.0",
     "webpack-bundle-tracker": "^0.2.0",
     "webpack-dev-server": "^2.11.2",
     "webpack-merge": "^4.1.0",
